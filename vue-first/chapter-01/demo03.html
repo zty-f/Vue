@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <li v-for="(item, index) in items">{{item.message}}---{{index}}</li>
+</div>
+<!--导入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data:{
+      items: [
+        {message: '张天泳'},
+        {message: '冯梦洁'},
+        {message: '美女'}
+      ]
+    }
+  });
+</script>
+</body>
+</html>

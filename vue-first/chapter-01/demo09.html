@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+   <todo>
+     <todo-title slot="todo-title" :title="title"> </todo-title>            <!--  v-bind:  ======  :  -->
+       <todo-items slot="todo-items" v-for="(item, index) in todoItems" :item="item"
+                   :index="index" v-on:remove="removeItems(index)" :key="index"></todo-items>
+   </todo>
+</div>
+<!--导入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  // slot：插槽
+  Vue.component("todo", {
+    template: '<div>'+
+            '<slot name="todo-title"></slot>'+
+            '<ul>' +
+            '<slot name="todo-items"></slot>' +
+            '</ul>'+
+            '</div>'
+  })
+
+  Vue.component("todo-title", {
+    props: ['title'],
+    template: '<div>{{title}}</div>'
+  })
+  Vue.component("todo-items", {
+    props: ['item', 'index'],                  //v-on:click  ====    @click
+    template: '<li>{{index}}-----{{item}}  <button @click="remove">删除</button></li>',
+    methods:{
+      remove:function (){
+        //  this.$emit 自定义事件分发
+          this.$emit('remove')
+      }
+    }
+  })
+
+  var vm = new Vue({
+    el: "#app",
+    data:{
+      title:'zty列表',
+      todoItems:['java','python','c'],
+    },
+    methods:{
+      removeItems: function (index){
+        alert("删除了"+this.todoItems[index]+"OK");
+        this.todoItems.splice(index,1);   //一次删除一个元素
+      }
+    }
+  });
+</script>
+</body>
+</html>

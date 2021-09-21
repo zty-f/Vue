@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  输入的文本：<input type="text" v-model="message">{{message}}</input>
+
+  <hr>
+  输入的文本：<textarea v-model="message">{{message}}</textarea>
+
+  <hr>
+  性别：
+  <input type="radio" name="sex" value="男" v-model="zty">男
+  <input type="radio" name="sex" value="女" v-model="zty">女
+  <p>
+    选中了谁：{{zty}}
+  </p>
+
+  <hr>
+  <select v-model="zty">
+    <option value="" disabled>---请选择---</option>
+    <option >A</option>
+    <option >B</option>
+    <option >C</option>
+  </select>
+   <span>选中的值：{{zty}}</span>
+</div>
+<!--导入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      message: '双向绑定测试',
+      zty: ''
+    }
+  });
+</script>
+</body>
+</html>
